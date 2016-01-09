@@ -37,7 +37,7 @@ public class TopWordFinderTopologyPartB {
 
 
     ------------------------------------------------- */
-
+    
 
     config.setMaxTaskParallelism(3);
 

@@ -16,7 +16,6 @@ public class FileReaderSpout implements IRichSpout {
   private SpoutOutputCollector _collector;
   private TopologyContext context;
 
-
   @Override
   public void open(Map conf, TopologyContext context,
                    SpoutOutputCollector collector) {
@@ -24,9 +23,8 @@ public class FileReaderSpout implements IRichSpout {
      /*
     ----------------------TODO-----------------------
     Task: initialize the file reader
-
-
     ------------------------------------------------- */
+      
 
     this.context = context;
     this._collector = collector;
