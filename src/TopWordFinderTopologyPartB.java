@@ -9,6 +9,9 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import backtype.storm.FileReaderSpout;
+import backtype.storm.SplitSentenceBolt;
+import backtype.storm.WordCountBolt;
 
 /**
  * This topology reads a file and counts the words in that file
@@ -37,7 +40,9 @@ public class TopWordFinderTopologyPartB {
 
 
     ------------------------------------------------- */
-    
+    builder.setSpout("",new FileReaderSpout(),2);
+     builder.setBolt("split",new SplitSentenceBolt(),8).shuffleGrouping("spout");
+    builder.setBolt("count",new WordCountBolt(),12).fieldsGrouping("split",new Fields("word"));
 
     config.setMaxTaskParallelism(3);
 

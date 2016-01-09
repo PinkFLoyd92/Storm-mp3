@@ -9,6 +9,11 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import backtype.storm.FileReaderSpout;
+import backtype.storm.SplitSentenceBolt;
+import backtype.storm.WordCountBolt;
+import backtype.storm.NormalizerBolt;
+
 
 /**
  * This topology reads a file, splits the senteces into words, normalizes the words such that all words are
@@ -40,7 +45,15 @@ public class TopWordFinderTopologyPartC {
 
 
     ------------------------------------------------- */
+builder.setSpout("spout", new FileReaderSpout(), 5);
 
+    builder.setBolt("split", new SplitSentenceBolt(), 8).shuffleGrouping("spout");
+
+    builder.setBolt("normalize", new NormalizerBolt(), 12).shuffleGrouping("split");
+
+    builder.setBolt("top-n", new TopNFinderBolt(N), 18).shuffleGrouping("normalize");
+
+    builder.setBolt("count", new WordCountBolt(), 15).fieldsGrouping("top-n", new Fields("word"));
 
     config.setMaxTaskParallelism(3);
 
