@@ -10,7 +10,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 import backtype.storm.SplitSentenceBolt;
-import backtype.storm.RandomSentanceSpout;
+import backtype.storm.RandomSentenceSpout;
 import backtype.storm.WordCountBolt;
 
 /**
@@ -39,7 +39,7 @@ public class TopWordFinderTopologyPartA {
 
 
     ------------------------------------------------- */
-    builder.setSpout("spout",new RandomSentanceSpout(),5);
+    builder.setSpout("spout",new RandomSentenceSpout(),5);
     builder.setBolt("split",new SplitSentenceBolt(),8).shuffleGrouping("spout");
     builder.setBolt("count",new WordCountBolt(),12).fieldsGrouping("split",new Fields("word"));
 

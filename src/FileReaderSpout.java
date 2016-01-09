@@ -11,11 +11,13 @@ import backtype.storm.topology.IRichSpout;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
+import backtype.storm.utils.Utils;
 
 public class FileReaderSpout implements IRichSpout {
     private SpoutOutputCollector _collector;
     private TopologyContext context;
-
+    private boolean completed  = false;
+    private FileReader fileReader;
     @Override
     public void open(Map conf, TopologyContext context,
                      SpoutOutputCollector collector) {
@@ -24,8 +26,14 @@ public class FileReaderSpout implements IRichSpout {
           ----------------------TODO-----------------------
           Task: initialize the file reader
           ------------------------------------------------- */
-        this.filereader = new FileReader('data.txt'); //¿file?
-        this.context = context;
+        try {
+            this.context = context;
+            this.fileReader = new FileReader(conf.get("data.txt").toString()); // ¿está bien eso?
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Error reading file "
+                                       + conf.get("inputFile"));
+        }
+
         this._collector = collector;
     }
 
@@ -39,9 +47,24 @@ public class FileReaderSpout implements IRichSpout {
           2. don't forget to sleep when the file is entirely read to prevent a busy-loop
 
           ------------------------------------------------- */
-        String word = new String();
-        this.filereader.read(word);
-	this._collector.emit(new Values(word));
+        if (completed) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+
+            }
+        }
+        String str;
+        BufferedReader reader = new BufferedReader(fileReader);
+        try {
+            while ((str = reader.readLine()) != null) {
+                this.collector.emit(new Values(str), str);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error reading tuple", e);
+        } finally {
+            completed = true;
+        }       Utils.sleep(100);
     }
 
     @Override
@@ -59,7 +82,7 @@ public class FileReaderSpout implements IRichSpout {
 
 
           ------------------------------------------------- */
-	this.filereader.close();
+        this.filereader.close();
     }
 
 
