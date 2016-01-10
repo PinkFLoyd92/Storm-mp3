@@ -58,7 +58,7 @@ public class FileReaderSpout implements IRichSpout {
         BufferedReader reader = new BufferedReader(fileReader);
         try {
             while ((str = reader.readLine()) != null) {
-                this.collector.emit(new Values(str), str);
+                this._collector.emit(new Values(str), str);
             }
         } catch (Exception e) {
             throw new RuntimeException("Error reading tuple", e);
@@ -82,7 +82,11 @@ public class FileReaderSpout implements IRichSpout {
 
 
           ------------------------------------------------- */
-        this.filereader.close();
+        try {
+            this.fileReader.close();
+        }catch(IOException e){
+            System.out.println("error");
+        }
     }
 
 
