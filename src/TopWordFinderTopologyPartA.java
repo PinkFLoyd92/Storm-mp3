@@ -9,9 +9,6 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import backtype.storm.SplitSentenceBolt;
-import backtype.storm.RandomSentenceSpout;
-import backtype.storm.WordCountBolt;
 
 /**
  * This topology counts the words from sentences emmited from a random sentence spout.

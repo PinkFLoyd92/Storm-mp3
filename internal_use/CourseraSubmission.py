@@ -4,8 +4,9 @@
 __author__ = 'Sayed Hadi Hashemi'
 
 import json
-import urllib
-import urllib2
+import urllib.parse
+import urllib3
+import urllib.request
 import hashlib
 import email
 import email.message
@@ -30,23 +31,23 @@ class CourseraSubmission(object):
     @staticmethod
     def _basic_prompt():
         """Prompt the user for login credentials. Returns a tuple (login, password)."""
-        login = raw_input('Login (Email address): ')
-        password = raw_input('One-time Password (from the assignment page. This is NOT your own account\'s password): ')
+        login = input('Login (Email address): ')
+        password = input('One-time Password (from the assignment page. This is NOT your own account\'s password): ')
         return login, password
 
     def _auth_get_challenge(self, sid):
         """Gets the challenge salt from the server. Returns (email,ch,state,ch_aux)."""
         url = self._auth_get_challenge_url()
         values = {'email_address': self.email, 'assignment_part_sid': sid, 'response_encoding': 'delim'}
-        data = urllib.urlencode(values)
-        req = urllib2.Request(url, data)
-        response = urllib2.urlopen(req)
+        data = urllib.parse.urlencode(values)
+        req = urllib.request.urlopen(url, data)
+        response = urllib.urlopen(req)
         text = response.read().strip()
 
         # text is of the form email|ch|signature
         splits = text.split('|')
         if len(splits) != 9:
-            print 'Badly formatted challenge response: %s' % text
+            print ('Badly formatted challenge response: %s' % text)
             return None
         return splits[2], splits[4], splits[6], splits[8]
 
@@ -97,26 +98,26 @@ class CourseraSubmission(object):
             return fp.read()
 
     def submit(self):
-        print '\n== Connecting to Coursera ... '
+        print ('\n== Connecting to Coursera ... ')
         for part_index, part_id in enumerate(self.part_ids):
             ret = self._auth_get_challenge(part_id)
             if not ret:
-                print '\n!! Error: %s\n' % self.email
+                print ('\n!! Error: %s\n' % self.email)
                 return False
 
             (login, ch, state, ch_aux) = ret
             if (not self.email) or (not ch) or (not state):
-                print '\n!! Error: %s\n' % self.email
+                print ('\n!! Error: %s\n' % self.email)
                 return
 
             if not self.is_enabled(part_index):
-                print '== (%s) %s' % (self.part_names[part_index], "Ignored. Result and/or Codes files are not exists.")
+                print ('== (%s) %s' % (self.part_names[part_index], "Ignored. Result and/or Codes files are not exists."))
                 continue
             ch_resp = self._auth_challenge_response(ch)
             (result, string) = self._submit_solution(ch_resp, part_id, self.output(part_index), self.aux(part_index),
                                                      state, ch_aux)
 
-            print '== (%s) %s' % (self.part_names[part_index], string.strip())
+            print ('== (%s) %s' % (self.part_names[part_index], string.strip()))
             if "We could not verify your username / password" in string:
                 return False
         return True
@@ -134,23 +135,23 @@ class CourseraSubmission(object):
         return True
 
     def init(self):
-        print '==\n== [sandbox] Submitting Solutions \n=='
+        print ('==\n== [sandbox] Submitting Solutions \n==')
 
         (self.email, self.password) = self._login_prompt()
         if not self.email:
-            print '!! Submission Cancelled'
+            print ('!! Submission Cancelled')
             return False
 
         if len(self.part_ids) > 0:
             sid = self.part_ids[0]
             ret = self._auth_get_challenge(sid)
             if not ret:
-                print '\n!! Error: %s\n' % self.email
+                print ('\n!! Error: %s\n' % self.email)
                 return False
 
             (login, ch, state, ch_aux) = ret
             if (not login) or (not ch) or (not state):
-                print '\n!! Error: %s\n' % login
+                print ('\n!! Error: %s\n' % login)
                 return False
         else:
             return False

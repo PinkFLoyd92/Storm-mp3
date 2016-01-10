@@ -9,9 +9,6 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import backtype.storm.FileReaderSpout;
-import backtype.storm.SplitSentenceBolt;
-import backtype.storm.WordCountBolt;
 
 /**
  * This topology reads a file and counts the words in that file

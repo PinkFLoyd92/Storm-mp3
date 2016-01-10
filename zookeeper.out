@@ -1,0 +1,51 @@
+2016-01-09 22:19:06,468 [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /home/sebas/zookeeper-3.4.7/bin/../conf/zoo.cfg
+2016-01-09 22:19:06,485 [myid:] - INFO  [main:DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3
+2016-01-09 22:19:06,485 [myid:] - INFO  [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+2016-01-09 22:19:06,486 [myid:] - INFO  [main:DatadirCleanupManager@101] - Purge task is not scheduled.
+2016-01-09 22:19:06,487 [myid:] - WARN  [main:QuorumPeerMain@113] - Either no config or no quorum defined in config, running  in standalone mode
+2016-01-09 22:19:06,545 [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /home/sebas/zookeeper-3.4.7/bin/../conf/zoo.cfg
+2016-01-09 22:19:06,546 [myid:] - INFO  [main:ZooKeeperServerMain@95] - Starting server
+2016-01-09 22:19:06,707 [myid:] - INFO  [main:Environment@100] - Server environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+2016-01-09 22:19:06,707 [myid:] - INFO  [main:Environment@100] - Server environment:host.name=sebasPC
+2016-01-09 22:19:06,708 [myid:] - INFO  [main:Environment@100] - Server environment:java.version=1.8.0_31
+2016-01-09 22:19:06,708 [myid:] - INFO  [main:Environment@100] - Server environment:java.vendor=Oracle Corporation
+2016-01-09 22:19:06,708 [myid:] - INFO  [main:Environment@100] - Server environment:java.home=/home/sebas/jdk1.8.0_31/jre
+2016-01-09 22:19:06,708 [myid:] - INFO  [main:Environment@100] - Server environment:java.class.path=/home/sebas/zookeeper-3.4.7/bin/../build/classes:/home/sebas/zookeeper-3.4.7/bin/../build/lib/*.jar:/home/sebas/zookeeper-3.4.7/bin/../lib/slf4j-log4j12-1.6.1.jar:/home/sebas/zookeeper-3.4.7/bin/../lib/slf4j-api-1.6.1.jar:/home/sebas/zookeeper-3.4.7/bin/../lib/netty-3.7.0.Final.jar:/home/sebas/zookeeper-3.4.7/bin/../lib/log4j-1.2.16.jar:/home/sebas/zookeeper-3.4.7/bin/../lib/jline-0.9.94.jar:/home/sebas/zookeeper-3.4.7/bin/../zookeeper-3.4.7.jar:/home/sebas/zookeeper-3.4.7/bin/../src/java/lib/*.jar:/home/sebas/zookeeper-3.4.7/bin/../conf:/home/sebas/GNUstep/Library/Libraries/Java:/usr/lib/GNUstep/Libraries/Java
+2016-01-09 22:19:06,709 [myid:] - INFO  [main:Environment@100] - Server environment:java.library.path=/home/sebas/GNUstep/Library/Libraries:/usr/lib:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2016-01-09 22:19:06,709 [myid:] - INFO  [main:Environment@100] - Server environment:java.io.tmpdir=/tmp
+2016-01-09 22:19:06,709 [myid:] - INFO  [main:Environment@100] - Server environment:java.compiler=<NA>
+2016-01-09 22:19:06,714 [myid:] - INFO  [main:Environment@100] - Server environment:os.name=Linux
+2016-01-09 22:19:06,715 [myid:] - INFO  [main:Environment@100] - Server environment:os.arch=amd64
+2016-01-09 22:19:06,716 [myid:] - INFO  [main:Environment@100] - Server environment:os.version=4.3.3-3-MANJARO
+2016-01-09 22:19:06,716 [myid:] - INFO  [main:Environment@100] - Server environment:user.name=sebas
+2016-01-09 22:19:06,716 [myid:] - INFO  [main:Environment@100] - Server environment:user.home=/home/sebas
+2016-01-09 22:19:06,716 [myid:] - INFO  [main:Environment@100] - Server environment:user.dir=/home/sebas/cloudapp-mp3
+2016-01-09 22:19:06,743 [myid:] - INFO  [main:ZooKeeperServer@785] - tickTime set to 2000
+2016-01-09 22:19:06,744 [myid:] - INFO  [main:ZooKeeperServer@794] - minSessionTimeout set to -1
+2016-01-09 22:19:06,744 [myid:] - INFO  [main:ZooKeeperServer@803] - maxSessionTimeout set to -1
+2016-01-09 22:19:06,885 [myid:] - INFO  [main:NIOServerCnxnFactory@89] - binding to port 0.0.0.0/0.0.0.0:2181
+2016-01-09 22:20:12,963 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /127.0.0.1:41328
+2016-01-09 22:20:13,122 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /0:0:0:0:0:0:0:1:49686
+2016-01-09 22:20:13,153 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /127.0.0.1:41328
+2016-01-09 22:20:13,162 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /0:0:0:0:0:0:0:1:49686
+2016-01-09 22:20:13,162 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /0:0:0:0:0:0:0:1:49688
+2016-01-09 22:20:13,163 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /0:0:0:0:0:0:0:1:49688
+2016-01-09 22:20:13,164 [myid:] - INFO  [SyncThread:0:FileTxnLog@199] - Creating new log file: log.2b07
+2016-01-09 22:20:13,276 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70000 with negotiated timeout 20000 for client /127.0.0.1:41328
+2016-01-09 22:20:13,287 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70001 with negotiated timeout 20000 for client /0:0:0:0:0:0:0:1:49686
+2016-01-09 22:20:13,288 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70002 with negotiated timeout 20000 for client /0:0:0:0:0:0:0:1:49688
+2016-01-09 22:20:13,385 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::PrepRequestProcessor@489] - Processed session termination for sessionid: 0x152298b65a70000
+2016-01-09 22:20:13,435 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1008] - Closed socket connection for client /127.0.0.1:41328 which had sessionid 0x152298b65a70000
+2016-01-09 22:20:13,458 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /127.0.0.1:41334
+2016-01-09 22:20:13,458 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /127.0.0.1:41334
+2016-01-09 22:20:13,487 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70003 with negotiated timeout 20000 for client /127.0.0.1:41334
+2016-01-09 22:20:14,082 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::PrepRequestProcessor@651] - Got user-level KeeperException when processing sessionid:0x152298b65a70003 type:delete cxid:0x14 zxid:0x2b10 txntype:-1 reqpath:n/a Error Path:/storm/profilerconfigs/demo2-2-1452293414 Error:KeeperErrorCode = Directory not empty for /storm/profilerconfigs/demo2-2-1452293414
+2016-01-09 22:20:14,247 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::PrepRequestProcessor@651] - Got user-level KeeperException when processing sessionid:0x152298b65a70003 type:delete cxid:0x2b zxid:0x2b1b txntype:-1 reqpath:n/a Error Path:/storm/profilerconfigs/demo-1-1452286779 Error:KeeperErrorCode = Directory not empty for /storm/profilerconfigs/demo-1-1452286779
+2016-01-09 22:20:16,312 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /0:0:0:0:0:0:0:1:49692
+2016-01-09 22:20:16,320 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /0:0:0:0:0:0:0:1:49692
+2016-01-09 22:20:16,343 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70004 with negotiated timeout 20000 for client /0:0:0:0:0:0:0:1:49692
+2016-01-09 22:20:16,377 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::PrepRequestProcessor@489] - Processed session termination for sessionid: 0x152298b65a70004
+2016-01-09 22:20:16,388 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1008] - Closed socket connection for client /0:0:0:0:0:0:0:1:49692 which had sessionid 0x152298b65a70004
+2016-01-09 22:20:16,396 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /127.0.0.1:41338
+2016-01-09 22:20:16,397 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@898] - Client attempting to establish new session at /127.0.0.1:41338
+2016-01-09 22:20:16,409 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@643] - Established session 0x152298b65a70005 with negotiated timeout 20000 for client /127.0.0.1:41338

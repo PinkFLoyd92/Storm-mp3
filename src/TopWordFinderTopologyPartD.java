@@ -9,12 +9,6 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
-import backtype.storm.FileReaderSpout;
-import backtype.storm.SplitSentenceBolt;
-import backtype.storm.WordCountBolt;
-import backtype.storm.NormalizerBolt;
-import backtype.storm.TopNFinderBolt;
-
 
 /**
  * This topology reads a file and counts the words in that file, then finds the top N words.
@@ -51,7 +45,7 @@ public class TopWordFinderTopologyPartD {
     builder.setBolt("split",new SplitSentenceBolt(),8).shuffleGrouping("spout");
     builder.setBolt("count",new WordCountBolt(),12).fieldsGrouping("split",new Fields("word"));
     builder.setBolt("normalize",new NormalizerBolt(),8);
-    builder.setBolt("top-n",new TopNFinderBolt(),12); 
+    builder.setBolt("top-n",new TopNFinderBolt(10),12);
     config.setMaxTaskParallelism(3);
 
     LocalCluster cluster = new LocalCluster();
