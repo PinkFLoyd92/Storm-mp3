@@ -2,6 +2,7 @@
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
+import backtype.storm.metric.LoggingMetricsConsumer;
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.TopologyBuilder;
@@ -22,7 +23,9 @@ public class TopWordFinderTopologyPartB {
 
     Config config = new Config();
     config.setDebug(true);
-
+    //In this example, we are registering the metrics consumer with a
+    // parallelism hint of 2. Here is the line we need to add when defining the topology.
+    config.registerMetricsConsumer(LoggingMetricsConsumer.class, 5);
 
     /*
     ----------------------TODO-----------------------

@@ -37,8 +37,6 @@ public class SplitSentenceBolt extends BaseRichBolt {
 
     @Override
     public void prepare(Map stormConf, TopologyContext context,OutputCollector collector) {
-        //public void prepare(Map conf, TopologyContext context, OutputCollector collector) {
-        //no se puede agregar el collector. No se si sea solo en los spouts que se le agrega.
         _collector=collector;
         initMetrics(context);
         }
@@ -54,10 +52,9 @@ public class SplitSentenceBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
        String sentence = tuple.getString(0);
        String[]words=sentence.split("[\\s~`!@#$%^&*(-)+=_:;'\",.<>?/\\\\0-9"+"\\]\\[\\}\\{]+");
-
        for(String word:words){
          _collector.emit(new Values(word));
-
+        updateMetrics(tuple.getString(0));
        }
         updateMetrics(tuple.getString(0));
    }
