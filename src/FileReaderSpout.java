@@ -60,6 +60,7 @@ public class FileReaderSpout implements IRichSpout {
             } catch (InterruptedException e) {
 
             }
+            return ;
         }
         String str;
         BufferedReader reader = new BufferedReader(fileReader);
