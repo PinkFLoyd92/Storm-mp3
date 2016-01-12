@@ -5,7 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 
+import backtype.storm.metric.api.CountMetric;
+import backtype.storm.metric.api.MeanReducer;
+import backtype.storm.metric.api.MultiCountMetric;
+import backtype.storm.metric.api.ReducedMetric;
 import backtype.storm.spout.SpoutOutputCollector;
+import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichSpout;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -18,6 +23,7 @@ public class FileReaderSpout implements IRichSpout {
     private TopologyContext context;
     private boolean completed  = false;
     private FileReader fileReader;
+
     @Override
     public void open(Map conf, TopologyContext context,
                      SpoutOutputCollector collector) {
@@ -28,7 +34,8 @@ public class FileReaderSpout implements IRichSpout {
           ------------------------------------------------- */
         try {
             this.context = context;
-            this.fileReader = new FileReader(conf.get("data.txt").toString()); // ¿está bien eso?
+            //this.fileReader = new FileReader(conf.get("data.txt").toString()); // ¿está bien eso?
+            this.fileReader = new FileReader("data.txt");
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Error reading file "
                                        + conf.get("inputFile"));

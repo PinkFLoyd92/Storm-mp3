@@ -1,3 +1,4 @@
+import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
@@ -6,6 +7,7 @@ import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * a bolt that finds the top n words.
