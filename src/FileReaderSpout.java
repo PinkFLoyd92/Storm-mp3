@@ -28,7 +28,7 @@ public class FileReaderSpout implements IRichSpout {
           ------------------------------------------------- */
         try {
             this.context = context;
-            this.fileReader = new FileReader(conf.get("data.txt").toString()); // ¿está bien eso?
+            this.fileReader = new FileReader("data.txt"); // ¿está bien eso?
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Error reading file "
                                        + conf.get("inputFile"));
@@ -53,6 +53,7 @@ public class FileReaderSpout implements IRichSpout {
             } catch (InterruptedException e) {
 
             }
+            return ;
         }
         String str;
         BufferedReader reader = new BufferedReader(fileReader);

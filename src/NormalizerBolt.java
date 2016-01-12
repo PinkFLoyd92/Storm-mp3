@@ -32,18 +32,17 @@ public class NormalizerBolt extends BaseBasicBolt {
         String[] words = sentence.split(" ");
         for (String word : words) {
             word = word.trim();
-            if(!word.isEmpty() && !this.checkWord(commonWords,word)){
+            if(!word.isEmpty()){
                 word = word.toLowerCase();
-                collector.emit(new Values(word));
+                if(!this.checkWord(word))
+                    collector.emit(new Values(word));
             }
         }
 
-
-
     }
-    public boolean checkWord(List<String> words,String word_to_check)
+    public boolean checkWord(String word_to_check)
     {
-	for (String word: words ) {
+	for (String word: commonWords ) {
 	    if (word_to_check.equals(word))
 		return true;
 	}

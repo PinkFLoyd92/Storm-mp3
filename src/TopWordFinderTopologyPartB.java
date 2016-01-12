@@ -37,11 +37,11 @@ public class TopWordFinderTopologyPartB {
 
 
     ------------------------------------------------- */
-    builder.setSpout("",new FileReaderSpout(),2);
-     builder.setBolt("split",new SplitSentenceBolt(),8).shuffleGrouping("spout");
-    builder.setBolt("count",new WordCountBolt(),12).fieldsGrouping("split",new Fields("word"));
+    builder.setSpout("spout",new FileReaderSpout(),2);
+     builder.setBolt("split",new SplitSentenceBolt(),3).shuffleGrouping("spout");
+    builder.setBolt("count",new WordCountBolt(),4).fieldsGrouping("split",new Fields("word"));
 
-    config.setMaxTaskParallelism(3);
+    config.setMaxTaskParallelism(5);
 
     LocalCluster cluster = new LocalCluster();
     cluster.submitTopology("word-count", config, builder.createTopology());
