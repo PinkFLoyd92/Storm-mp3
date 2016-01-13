@@ -21,10 +21,10 @@ class MP3(CourseraSubmission):
         self.part_names = ["Top Word Finder Topology", "File Reader Spout", "Normalizer Bolt", "Top N Finder Bolt"]
         self.files_results = ["output-part-a.txt", "output-part-b.txt", "output-part-c.txt", "output-part-d.txt"]
         self.files_codes = [
-            ["src/TopWordFinderTopologyPartA.java"],
-            ["src/FileReaderSpout.java", "src/TopWordFinderTopologyPartB.java"],
-            ["src/NormalizerBolt.java", "src/TopWordFinderTopologyPartC.java"],
-            ["src/TopNFinderBolt.java", "src/TopWordFinderTopologyPartD.java"]
+            ["src/java.TopWordFinderTopologyPartA.java"],
+            ["src/java.FileReaderSpout.java", "src/java.TopWordFinderTopologyPartB.java"],
+            ["src/java.NormalizerBolt.java", "src/java.TopWordFinderTopologyPartC.java"],
+            ["src/java.TopNFinderBolt.java", "src/java.TopWordFinderTopologyPartD.java"]
         ]
 
     @staticmethod
