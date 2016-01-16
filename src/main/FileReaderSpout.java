@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
@@ -12,6 +17,10 @@ import backtype.storm.topology.IRichSpout;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
+import backtype.storm.utils.Utils;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 public class FileReaderSpout implements IRichSpout {
     private SpoutOutputCollector _collector;
@@ -49,7 +58,7 @@ public class FileReaderSpout implements IRichSpout {
           2. don't forget to sleep when the file is entirely read to prevent a busy-loop
 
           ------------------------------------------------- */
-        if (completed) {
+        /*if (completed) {
             try {
                 //Thread.sleep(1000);
                 this._collector.emit(new Values(" "));
@@ -57,18 +66,27 @@ public class FileReaderSpout implements IRichSpout {
 
             }
             return ;
-        }
+        }*/
+        //Client cliente;
         String str;
-        BufferedReader reader = new BufferedReader(fileReader);
-        try {
-            while ((str = reader.readLine()) != null) {
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyWebTarget target = client.target("http://192.168.1.108:8000/");
+        Response response = target.request().get();
+        str = response.readEntity(String.class);
+        //cliente = ClientBuilder.newClient();
+        //target = cliente.target("http://192.168.1.108:8000/");
+        while(true)
+        {
+            try {
+                str = target.request(MediaType.TEXT_PLAIN).get(String.class);
                 this._collector.emit(new Values(str), str);
+                Utils.sleep(500);
+            }catch (Exception e){
+                System.out.println("Error consuming webservice...");
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Error reading tuple", e);
-        } finally {
-            completed = true;
-        }       //Utils.sleep(100);
+        }
+
+        //Utils.sleep(100);
     }
 
     @Override
