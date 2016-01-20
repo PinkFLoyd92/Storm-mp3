@@ -5,6 +5,7 @@ import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.metric.LoggingMetricsConsumer;
+import backtype.storm.metric.SystemBolt;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
 
@@ -24,6 +25,7 @@ public class TopWordFinderTopologyPartB {
         //In this example, we are registering the metrics consumer with a
         // parallelism hint of 2. Here is the line we need to add when defining the topology.
         config.registerMetricsConsumer(LoggingMetricsConsumer.class, 5);
+
         config.put("data",args[1]);
         /*
         ----------------------TODO-----------------------
@@ -39,7 +41,6 @@ public class TopWordFinderTopologyPartB {
         builder.setSpout("spout",new FileReaderSpout(),2);
         builder.setBolt("split",new SplitSentenceBolt(),8).shuffleGrouping("spout");
         builder.setBolt("count",new WordCountBolt(),12).fieldsGrouping("split",new Fields("word"));
-
         config.setMaxTaskParallelism(5);
 
         try {
