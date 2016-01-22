@@ -1,6 +1,7 @@
 package main;
 
 import backtype.storm.Config;
+import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
@@ -27,6 +28,7 @@ public class TopWordFinderTopologyPartB {
         config.registerMetricsConsumer(LoggingMetricsConsumer.class, 5);
 
         config.put("data",args[1]);
+        LocalCluster cluster = new LocalCluster();
         /*
         ----------------------TODO-----------------------
         Task: wire up the topology
@@ -44,6 +46,7 @@ public class TopWordFinderTopologyPartB {
         config.setMaxTaskParallelism(5);
 
         try {
+            cluster.submitTopology(args[0], config, builder.createTopology());
             StormSubmitter.submitTopology(args[0], config, builder.createTopology());
         }catch (AlreadyAliveException alreadyAliveException){
             System.out.println(alreadyAliveException);

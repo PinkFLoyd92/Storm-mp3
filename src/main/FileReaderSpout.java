@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
-
+import javax.swing.JOptionPane;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichSpout;
@@ -49,10 +49,17 @@ public class FileReaderSpout implements IRichSpout {
           2. don't forget to sleep when the file is entirely read to prevent a busy-loop
 
           ------------------------------------------------- */
+	/* ProcessBuilder pb = new ProcessBuilder("python3","/home/sebas/mp3_python/main.py");
+        try {
+            Process p = pb.start();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"debug",JOptionPane.INFORMATION_MESSAGE);
+	    }*/
         if (completed) {
             try {
                 //Thread.sleep(1000);
                 this._collector.emit(new Values(" "));
+
             } catch (Exception e) {
 
             }
