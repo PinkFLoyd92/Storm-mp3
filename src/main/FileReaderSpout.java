@@ -49,17 +49,37 @@ public class FileReaderSpout implements IRichSpout {
           2. don't forget to sleep when the file is entirely read to prevent a busy-loop
 
           ------------------------------------------------- */
-	/* ProcessBuilder pb = new ProcessBuilder("python3","/home/sebas/mp3_python/main.py");
+        String[] cmd = {
+                "/bin/bash",
+                "-c",
+                "python3 /home/sebas/mp3_python/main.py '"
+        };
         try {
-            Process p = pb.start();
+            Runtime.getRuntime().exec(cmd);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,e.getMessage(),"debug",JOptionPane.INFORMATION_MESSAGE);
+            e.printStackTrace();
+        }
+	 /*ProcessBuilder pb = new ProcessBuilder("python3","/home/sebas/mp3_python/main.py");
+        try {
+            pb.start();
+        } catch (IOException e) {
+            e.printStackTrace();
 	    }*/
         if (completed) {
             try {
                 //Thread.sleep(1000);
+		
                 this._collector.emit(new Values(" "));
-
+               /* try {
+                    pb.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+                try {
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
 
             }
@@ -68,8 +88,18 @@ public class FileReaderSpout implements IRichSpout {
         String str;
         BufferedReader reader = new BufferedReader(fileReader);
         try {
+            Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             while ((str = reader.readLine()) != null) {
                 this._collector.emit(new Values(str), str);
+                try {
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException("Error reading tuple", e);

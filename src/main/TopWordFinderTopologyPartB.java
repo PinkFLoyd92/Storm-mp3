@@ -1,7 +1,7 @@
 package main;
 
 import backtype.storm.Config;
-import backtype.storm.LocalCluster;
+//import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
@@ -22,7 +22,7 @@ public class TopWordFinderTopologyPartB {
 
         Config config = new Config();
         config.setDebug(true);
-        //config.setNumWorkers(3);
+        config.setNumWorkers(3);
         //In this example, we are registering the metrics consumer with a
         // parallelism hint of 2. Here is the line we need to add when defining the topology.
         config.registerMetricsConsumer(LoggingMetricsConsumer.class, 5);

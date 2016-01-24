@@ -14,6 +14,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class SplitSentenceBolt extends BaseRichBolt {
@@ -51,11 +52,26 @@ public class SplitSentenceBolt extends BaseRichBolt {
 
     @Override
     public void execute(Tuple tuple) {
+        String[] cmd = {
+                "/bin/bash",
+                "-c",
+                "python3 /home/sebas/mp3_python/main.py '"
+        };
+        try {
+            Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String sentence = tuple.getString(0);
         String[]words=sentence.split("[\\s~`!@#$%^&*(-)+=_:;'\",.<>?/\\\\0-9"+"\\]\\[\\}\\{]+");
         for(String word:words){
             _collector.emit(new Values(word));
             updateMetrics(word);
+            try {
+                Runtime.getRuntime().exec(cmd);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
    }
    @Override

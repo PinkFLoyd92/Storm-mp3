@@ -7,6 +7,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,12 +33,27 @@ public class NormalizerBolt extends BaseBasicBolt {
           ------------------------------------------------- */
         String sentence = tuple.getString(0);
         String[] words = sentence.split(" ");
+        String[] cmd = {
+                "/bin/bash",
+                "-c",
+                "python3 /home/sebas/mp3_python/main.py '"
+        };
+        try {
+            Runtime.getRuntime().exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (String word : words) {
             word = word.trim();
             if(!word.isEmpty()){
                 word = word.toLowerCase();
                 if(!this.checkWord(word))
                     collector.emit(new Values(word));
+                try {
+                    Runtime.getRuntime().exec(cmd);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
